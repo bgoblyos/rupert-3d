@@ -40,5 +40,5 @@ maxDist a b = foldl (\acc x -> if dist x > dist acc then x else acc) a
   where dist x = lineDistance a b x
 
 lineDistance [x1, y1] [x2, y2] [x0, y0] = area / baseLength
-  where area = abs ((x2-x1)*(y1-y0) - (x1-x0)*(y2-y1))
+  where area = 2 * triangleArea [x1, y1] [x2, y2] [x0, y0]
         baseLength = sqrt ((x2-x1)^2 + (y2-y1)^2)
