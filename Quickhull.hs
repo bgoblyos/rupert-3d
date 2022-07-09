@@ -1,4 +1,4 @@
-module ConvexHull.Quickhull
+module Quickhull
 ( quickHull2d
 ) where
 
