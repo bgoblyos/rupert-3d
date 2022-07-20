@@ -21,7 +21,7 @@ executable rupert-3d
   other-modules:       Plot
                      , Quickhull
                      , Sample
-                     , Vector
+                     , Transfom
   -- other-extensions:
   build-depends:       base >=4.14 && <4.15
                      , random
