@@ -1,24 +1,29 @@
-module Vector
+module Transform
   ( rotateList
   , projectList
   ) where
+
+import Data.List
 
 projectList theta phi = map (project theta phi)
 
 rotateList alpha = map (rotate alpha)
 
--- matrix representation: | a b |
---                        | c d |
+-- matrix is represented row by row, like: [ [a, b]    ->  | a b |
+--                                         , [c, d] ]  ->  | c d |
 
---
-matrixMult2D [[a, b], [c, d]] [x, y] = vecAdd (scale x [a, c]) (scale y [b, d])
+matrixMult matrix vector = vecSum $ zipWith scale vector columns
+  where columns = transpose matrix
 
 vecAdd = zipWith (+)
 
+vecSum = foldl1 vecAdd
+
 scale x = map (*x)
 
-rotate alpha = matrixMult2D rotMatrix
+rotate alpha = matrixMult rotMatrix
   where rotMatrix = [ [cos alpha, - sin alpha]
                     , [sin alpha, cos alpha] ]
 
+-- TODO
 project theta phi [x, y, z] = 0
