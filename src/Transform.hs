@@ -25,5 +25,6 @@ rotate alpha = matrixMult rotMatrix
   where rotMatrix = [ [cos alpha, - sin alpha]
                     , [sin alpha, cos alpha] ]
 
--- TODO
-project theta phi [x, y, z] = 0
+project theta phi = matrixMult projectMatrix
+  where projectMatrix = [ [ - sin theta             , cos theta                , 0       ] 
+                        , [ (- cos theta) * cos phi , (- sin theta ) * cos phi , sin phi ] ]
