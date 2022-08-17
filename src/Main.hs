@@ -5,6 +5,7 @@ import Quickhull
 import Transform
 import General
 import Sample
+import Polyhedra
 import Data.List
 import Random.MWC.Pure (seed)
 import Graphics.EasyPlot
@@ -14,8 +15,8 @@ main = do
   mapM_ print filtered
   massPlot filtered poly 100
 
-poly = octahedron
-range = 10^4
+poly = triakisTetrahedron
+range = 10^9
 seed1 = 2892422396
 seed2 = 2566929885
 seed3 = 1139884487
@@ -43,12 +44,6 @@ filtered = filter (testRupert poly) randomParams
 
 randomParams = take range $ transpose [r (0, 2*pi) seed1, map acos $ r (-1, 1) seed2, r (0, 2*pi) seed3, map acos $ r (-1, 1) seed4, r (0, 2*pi) seed5]
   where r (lo, hi) newSeed = listGenerator (lo, hi) (seed [newSeed])
-
-cube = [[1,1,1],[1,1,-1],[1,-1,1],[1,-1,-1],[-1,1,1],[-1,1,-1],[-1,-1,1],[-1,-1,-1]]
-
-cube' = [[x, y, z] | x <- [1, -1], y <- [1, -1], z <- [1, -1]]
-
-octahedron = [[0,0,1],[0,0,-1],[0,1,0],[0,-1,0],[1,0,0],[-1,0,0]]
 
 testRupert polyhedron [theta1, phi1, theta2, phi2, alpha] = isListContained bigger smaller
   where poly1 = quickHull2d $ rotateList alpha $ projectList theta1 phi1 polyhedron
