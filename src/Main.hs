@@ -9,14 +9,16 @@ import Polyhedra
 import Data.List
 import Random.MWC.Pure (seed)
 import Graphics.EasyPlot
+--import Control.DeepSeq
+--import Control.Parallel.Strategies
 
 main = do
   
   mapM_ print filtered
   massPlot filtered poly 100
 
-poly = triakisTetrahedron
-range = 10^9
+poly = cube
+range = 10^6
 seed1 = 2892422396
 seed2 = 2566929885
 seed3 = 1139884487

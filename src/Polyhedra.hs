@@ -5,6 +5,7 @@ module Polyhedra
 
 import Data.List
 
+cube ::  [[Double]]
 cube = [ [x, y, z] | x <- [-1,1], y <- [-1,1], z <- [-1,1]]
 
 octahedron = nub $ permutations [0,0,1] ++
